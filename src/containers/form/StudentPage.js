@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import JsonSchemaForm from 'react-jsonschema-form'
-import studentFormData from 'src/data/form/driver'
+import { studentFormData } from 'src/data/form'
 
 class StudentPage extends Component {
   constructor(props) {

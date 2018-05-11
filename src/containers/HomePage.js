@@ -19,6 +19,7 @@ class HomePage extends Component {
           description={'接机活动仅限NEU新生'}
           link={FORM_STUDENT}
         />
+        <br/>
         <FormCard
           title={'司机入口'}
           description={'请如实填报个人信息'}
