@@ -9,6 +9,10 @@ class Form {
     self.schema = initFormData
   }
 
+  @action submit(form) {
+    console.log('mobx', form)
+  }
+
 
 }
 
