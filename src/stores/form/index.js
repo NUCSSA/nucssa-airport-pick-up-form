@@ -8,6 +8,8 @@ class Form {
   @action reset() {
     self.schema = initFormData
   }
+
+
 }
 
 const self = new Form()
