@@ -1,19 +1,17 @@
-const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const path = require('path')
 const rootPath =  path.resolve(path.dirname('./'))
 const buildPath = path.resolve(rootPath, './build')
 const srcPath = path.resolve(rootPath, './src')
-const entryPath = path.resolve(rootPath, './src/index.js')
 const assetsPath = path.resolve(rootPath, './src/assets')
-require('babel-polyfill')
-
+const entryPath = path.resolve(rootPath, './src/index.js')
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    entryPath,
-  ],
+  entry: {
+    main: entryPath,
+  },
   output: {
     path: buildPath,
     filename: '[name].[chunkhash].js',
@@ -61,7 +59,23 @@ module.exports = {
     },
     extensions: ['.js', '.jsx'],
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   plugins: [
+    new CleanWebpackPlugin([buildPath], {
+      root: rootPath,
+      verbose: true,
+      dry: false,
+    }),
     new HtmlWebpackPlugin({
       template: assetsPath + '/index.html',
     }),

@@ -1,25 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'mobx-react'
+import { Router } from 'react-router'
+import createHashHistory from 'history/createHashHistory'
+import { syncHistoryWithStore } from 'mobx-react-router'
 
-import Form from 'react-jsonschema-form'
+const hashHistory = createHashHistory()
 
 import stores from './stores'
-import studentFormData from './data/form/student'
-import driverFormData from './data/form/driver'
+import App from './containers'
 
-// import configureStore from './redux/store/configureStore';
-// import IndexContainer from './containers';
-//
-// const store = configureStore();
+const history = syncHistoryWithStore(hashHistory, stores.routing)
+
+const onSubmit = ({formData}) => console.log('Data submitted: ',  formData)
 
 ReactDOM.render(
   <Provider {...stores}>
-    <div>
-      <Form
-        schema={studentFormData.JsonSchema}
-        uiSchema={studentFormData.UISchema}
-      />
-    </div>
+    <Router history={history}>
+      <App/>
+    </Router>
   </Provider>
   , document.getElementById('aa3c5543-edfc-4ed6-9538-1f9d4a7c946a'))
