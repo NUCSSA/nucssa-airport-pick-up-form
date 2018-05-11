@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axiosClass from 'axios'
 import { API_END_POINT } from 'src/data/api'
 
-axios.defaults.baseURL = API_END_POINT
-
-export default axios
+export const axios = axiosClass.create({
+  baseURL: API_END_POINT,
+})

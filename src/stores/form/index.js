@@ -1,5 +1,7 @@
 import { observable, action } from 'mobx'
 
+import submit from 'src/api/form/submission'
+
 const initFormData = {}
 
 class Form {
@@ -11,6 +13,7 @@ class Form {
 
   @action submit(form) {
     console.log('mobx', form)
+    submit(form, 'driverForm')
   }
 
 
