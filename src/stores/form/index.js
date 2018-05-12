@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx'
 
-import { postSubmitForm } from 'src/api/form/submission'
+import { postDriverForm, postStudentForm } from 'src/api/form/submission'
 
 const initFormData = {}
 
@@ -11,8 +11,12 @@ class Form {
     self.schema = initFormData
   }
 
-  @action submit(form) {
-    postSubmitForm(form, 'driverForm')
+  @action submitDriverForm(form) {
+    postDriverForm(form)
+  }
+
+  @action submitStudentForm(form) {
+    postStudentForm(form)
   }
 
 

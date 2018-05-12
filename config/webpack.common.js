@@ -7,11 +7,10 @@ const buildPath = path.resolve(rootPath, './build')
 const srcPath = path.resolve(rootPath, './src')
 const assetsPath = path.resolve(rootPath, './src/assets')
 const entryPath = path.resolve(rootPath, './src/index.js')
+require('babel-polyfill')
 
 module.exports = {
-  entry: {
-    main: entryPath,
-  },
+  entry: ['babel-polyfill', entryPath],
   output: {
     path: buildPath,
     filename: '[name].[chunkhash].js',

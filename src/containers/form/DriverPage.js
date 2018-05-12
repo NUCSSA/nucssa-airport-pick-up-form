@@ -8,7 +8,7 @@ import { driverFormData } from 'src/data/form'
 @inject(stores => {
   let { form } = stores
   return {
-    submit: form.submit,
+    submitDriverForm: form.submitDriverForm,
   }
 })
 @observer
@@ -19,12 +19,11 @@ class DriverPage extends Component {
   }
 
   static propTypes = {
-    submit: PropTypes.func,
+    submitDriverForm: PropTypes.func,
   }
 
   onSubmit({ formData }) {
-    const { submit } = this.props
-    submit(formData)
+    this.props.submitDriverForm(formData)
   }
 
   render() {
