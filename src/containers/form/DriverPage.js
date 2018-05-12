@@ -1,6 +1,8 @@
 import { observer, inject } from 'mobx-react'
 import React, { Component } from 'react'
 import JsonSchemaForm from 'react-jsonschema-form'
+import PropTypes from 'prop-types'
+
 import { driverFormData } from 'src/data/form'
 
 @inject(stores => {
@@ -16,8 +18,11 @@ class DriverPage extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
+  static propTypes = {
+    submit: PropTypes.func,
+  }
+
   onSubmit({ formData }) {
-    console.log(formData)
     const { submit } = this.props
     submit(formData)
   }

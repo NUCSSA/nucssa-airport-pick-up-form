@@ -12,8 +12,6 @@ import App from './containers'
 
 const history = syncHistoryWithStore(hashHistory, stores.routing)
 
-const onSubmit = ({formData}) => console.log('Data submitted: ',  formData)
-
 ReactDOM.render(
   <Provider {...stores}>
     <Router history={history}>
