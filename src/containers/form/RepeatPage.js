@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import ResponseCard from 'src/components/ResponseCard'
 
-class SuccessPage extends Component {
+class RepeatPage extends Component {
   constructor(props) {
     super(props)
   }
@@ -10,10 +10,10 @@ class SuccessPage extends Component {
   render() {
     return (
       <ResponseCard
-        info={'报名表提交成功'}
+        info={'请不要重复提交报名表'}
       />
     )
   }
 }
 
-export default SuccessPage
+export default RepeatPage
