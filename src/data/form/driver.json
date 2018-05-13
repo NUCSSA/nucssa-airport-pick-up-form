@@ -40,7 +40,7 @@
         "description": "最好为gmail"
       },
       "status": {
-        "title": "就读项目",
+        "title": "就读状态",
         "type": "string",
         "enum": [
           "NEU在校生",
