@@ -6,12 +6,14 @@ import {
   FORM,
   FORM_DRIVER,
   FORM_STUDENT,
+  SUBMISSION_SUCCESS,
 } from 'src/data/route'
 
 import FallbackPage  from './FallbackPage'
 import HomePage from './HomePage'
 import DriverPage from './form/DriverPage'
 import StudentPage from './form/StudentPage'
+import SuccessPage from './SuccessPage'
 
 const FormRouter = () => (
   <Switch>
@@ -30,6 +32,7 @@ class RoutePage extends Component {
     return (
       <Switch>
         <Route exact path={ROOT} component={HomePage}/>
+        <Route exact path={SUBMISSION_SUCCESS} component={SuccessPage}/>
         <Route path={FORM} component={FormRouter}/>
         <Route component={FallbackPage}/>
       </Switch>
