@@ -98,7 +98,7 @@
     }
   },
   "UISchema": {
-    "StudentSet": {
+    "studentSet": {
       "ui:options": {
         "orderable": false
       }
