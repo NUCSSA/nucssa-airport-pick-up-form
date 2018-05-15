@@ -53,15 +53,22 @@
       }
     },
     "title": "乘客报名表",
-    "description": "乘客必须为NEU新生",
+    "description": "注意：乘客必须为NEU新生，因为司机的数量有限，您的订单有可能不被受理",
     "type": "object",
     "required": [
+      "wechatId",
+      "studentSet",
       "arrivingTime",
       "flightNumber",
       "address",
       "luggageNumber"
     ],
     "properties": {
+      "wechatId": {
+        "title": "主联系人的微信ID",
+        "type": "string",
+        "description": "此项为NUCSSA和司机联系您所需用的微信Id，也是您查看您的接机信息的凭证，请务必正确填写，并且牢记"
+      },
       "studentSet": {
         "title": "乘客(学生)列表",
         "description": "有几名乘客填写几份信息，最多3人",

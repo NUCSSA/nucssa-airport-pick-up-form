@@ -15,6 +15,11 @@
       "availableTimeSlot"
     ],
     "properties": {
+      "wechatId": {
+        "title": "微信ID",
+        "type": "string",
+        "description": "注意，不是昵称, 此项为NUCSSA和乘客联系您所需用的微信Id，也是您查看订单的凭证，请务必正确填写，并且牢记"
+      },
       "name": {
         "title": "姓名",
         "type": "string"
@@ -56,11 +61,6 @@
           "博士",
           "一毕业"
         ]
-      },
-      "wechatId": {
-        "title": "微信ID",
-        "type": "string",
-        "description": "注意，不是昵称"
       },
       "phone": {
         "title": "电话",
