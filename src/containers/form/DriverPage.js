@@ -6,9 +6,9 @@ import PropTypes from 'prop-types'
 import { driverFormData } from 'src/data/form'
 
 @inject(stores => {
-  let { form } = stores
+  let { formStore } = stores
   return {
-    submitDriverForm: form.submitDriverForm,
+    submitDriverForm: formStore.submitDriverForm,
   }
 })
 @observer

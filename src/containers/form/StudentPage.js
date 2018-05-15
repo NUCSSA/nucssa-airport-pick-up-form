@@ -6,9 +6,9 @@ import PropTypes from 'prop-types'
 
 
 @inject(stores => {
-  let { form } = stores
+  let { formStore } = stores
   return {
-    submitStudentForm: form.submitStudentForm,
+    submitStudentForm: formStore.submitStudentForm,
   }
 })
 @observer

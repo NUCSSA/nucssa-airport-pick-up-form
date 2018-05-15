@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Jumbotron } from 'reactstrap'
+import { observer } from 'mobx-react'
 
+@observer
 class InfoCard extends Component {
   constructor(props) {
     super(props)

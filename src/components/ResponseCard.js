@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Jumbotron, Button } from 'reactstrap'
 import { ROOT } from 'src/data/route'
+import { observer } from 'mobx-react'
 
+@observer
 class ResponseCard extends Component {
   constructor(props) {
     super(props)

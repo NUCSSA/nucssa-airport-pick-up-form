@@ -10,7 +10,7 @@ const hashHistory = createHashHistory()
 import stores from './stores'
 import App from './containers'
 
-const history = syncHistoryWithStore(hashHistory, stores.routing)
+const history = syncHistoryWithStore(hashHistory, stores.routingStore)
 
 ReactDOM.render(
   <Provider {...stores}>

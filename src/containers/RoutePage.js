@@ -8,6 +8,7 @@ import {
   FORM_STUDENT,
   FORM_SUBMISSION_SUCCESS,
   FORM_SUBMISSION_REPEAT,
+  DRIVER,
 } from 'src/data/route'
 
 import FallbackPage  from './FallbackPage'
@@ -16,6 +17,8 @@ import DriverPage from './form/DriverPage'
 import StudentPage from './form/StudentPage'
 import SuccessPage from './form/SuccessPage'
 import RepeatPage from './form/RepeatPage'
+
+import DriverRoutePage from './driver/DriverRoutePage'
 
 const FormRouter = () => (
   <Switch>
@@ -37,6 +40,7 @@ class RoutePage extends Component {
         <Route exact path={FORM_SUBMISSION_SUCCESS} component={SuccessPage}/>
         <Route exact path={FORM_SUBMISSION_REPEAT} component={RepeatPage}/>
         <Route path={FORM} component={FormRouter}/>
+        <Route path={DRIVER} component={DriverRoutePage} />
         <Route component={FallbackPage}/>
       </Switch>
     )

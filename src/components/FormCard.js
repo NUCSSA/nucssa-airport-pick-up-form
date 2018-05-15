@@ -8,7 +8,9 @@ import {
   CardTitle,
   Button,
 } from 'reactstrap'
+import { observer } from 'mobx-react'
 
+@observer
 class FormCard extends Component {
   constructor(props) {
     super(props)

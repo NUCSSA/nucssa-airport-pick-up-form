@@ -1,9 +1,13 @@
-import form from './form'
-import routing from './routing'
+import driverStore from './driver'
+import formStore from './form'
+import orderStore from './order'
+import routingStore from './routing'
 
 const stores = {
-  form,
-  routing,
+  driverStore,
+  formStore,
+  orderStore,
+  routingStore,
 }
 
 export default stores

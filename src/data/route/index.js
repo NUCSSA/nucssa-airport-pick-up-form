@@ -10,5 +10,10 @@ export const FORM_SUBMISSION_SUCCESS = FORM + '/success'
 
 export const FORM_SUBMISSION_REPEAT = FORM + '/repeat'
 
+export const DRIVER = '/driver'
+
+export const DRIVER_LOGIN = DRIVER + '/login'
+
+export const DRIVER_HOME = DRIVER + '/home'
 
 

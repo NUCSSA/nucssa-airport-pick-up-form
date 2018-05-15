@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --open --config ./config/webpack.dev.js",
     "build:production": "API_END_POINT=https://nucssa-pick-up-server.herokuapp.com webpack --config ./config/webpack.prod.js",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build:production && gh-pages -d build",
     "lint": "./node_modules/.bin/eslint ./src ./config",
     "fix": "./node_modules/.bin/eslint ./src ./config --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -69,6 +69,7 @@
     "mobx-react-router": "^4.0.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
+    "react-bootstrap": "^0.32.1",
     "react-clipboard.js": "^1.1.3",
     "react-dom": "^16.3.2",
     "react-drag-and-drop": "^2.4.0",
