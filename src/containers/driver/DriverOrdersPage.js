@@ -57,7 +57,7 @@ class DriverOrdersPage extends Component {
           <h3 className='display-4'>司机已接收订单页</h3>
           <h3 className='display-5'>您好，{driver.name}</h3>
         </Jumbotron>
-        <h2>以接收订单</h2>
+        <h2>已接收订单</h2>
         {this.renderSubmissions()}
       </div>
     )
