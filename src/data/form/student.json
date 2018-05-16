@@ -9,7 +9,9 @@
           "degree",
           "email",
           "wechatId",
-          "phone"
+          "phone",
+          "emergencyContact",
+          "emergencyContactPhone"
         ],
         "properties": {
           "name": {
@@ -46,6 +48,15 @@
           },
           "phone": {
             "title": "电话",
+            "type": "string",
+            "description": "国内电话请加86"
+          },
+          "emergencyContact": {
+            "title": "紧急联系人",
+            "type": "string"
+          },
+          "emergencyContactPhone": {
+            "title": "紧急联系人电话",
             "type": "string",
             "description": "国内电话请加86"
           }
