@@ -1,35 +1,37 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, NavItem, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import { Navbar, Nav, NavbarBrand } from 'reactstrap'
+
 import { Link } from 'react-router-dom'
 
 import InfoCard from 'src/components/InfoCard'
 import FormCard from 'src/components/FormCard'
 
-import { FORM_STUDENT, FORM_DRIVER } from 'src/data/route'
-import { DRIVER_HOME, ORDER_QUERY } from 'src/data/route'
+import { FORM_STUDENT, FORM_DRIVER, DRIVER_HOME, ORDER_QUERY } from 'src/data/route'
 
 let HomeNavBar = () => {
   return (
-    <Navbar>
-      <Nav pullRight>
-        <NavItem eventKey={1}>
+    <div>
+      <Navbar color="light" light>
+        <NavbarBrand>NUCSSA接机</NavbarBrand>
+        <Nav navbar>
           <Link to={DRIVER_HOME}>
-            <Button>
+            <Button className={'pull-right'}>
               司机登陆
             </Button>
           </Link>
-        </NavItem>
-      </Nav>
-      <Nav pullRight>
-        <NavItem eventKey={2}>
+        </Nav>
+        <Nav navbar>
           <Link to={ORDER_QUERY}>
-            <Button>
-              接机订单状态查询
+            <Button className={'pull-right'}>
+              订单查询
             </Button>
           </Link>
-        </NavItem>
-      </Nav>
-    </Navbar>
+        </Nav>
+        <Nav className="ml-auto" navbar>
+        </Nav>
+      </Navbar>
+    </div>
   )
 }
 
