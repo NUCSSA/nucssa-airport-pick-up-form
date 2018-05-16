@@ -1,20 +1,23 @@
-import { observer, inject } from 'mobx-react'
+import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react'
 import React, { Component } from 'react'
-import { Jumbotron, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Jumbotron } from 'reactstrap'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
 import StudentSubmission from 'src/components/student/StudentSubmission'
+import TakeOrderButton from 'src/components/order/TakeOrderButton'
 
 @inject(stores => {
   let { driverStore, orderStore } = stores
   let { driver, driverId } = driverStore
-  let { getAvailableSubmissions, availableSubmissions } = orderStore
+  let { getAvailableSubmissions, availableSubmissions, createOrder } = orderStore
+
   return {
     driver,
     driverId,
     getAvailableSubmissions,
     availableSubmissions,
+    createOrder,
   }
 })
 @observer
@@ -29,9 +32,11 @@ class DriverHomePage extends Component {
   }
 
   static propTypes = {
-    driver: PropTypes.object,
+    driver: MobxPropTypes.observableObject,
+    driverId: PropTypes.string,
     getAvailableSubmissions: PropTypes.func,
-    availableSubmissions: PropTypes.array,
+    availableSubmissions: MobxPropTypes.observableArray,
+    createOrder: PropTypes.func,
   }
 
   componentWillMount() {
@@ -45,9 +50,18 @@ class DriverHomePage extends Component {
   }
 
   renderSubmissions() {
-    return _.map(this.props.availableSubmissions, (s) => {
+    let { availableSubmissions, createOrder, driverId } = this.props
+
+    return _.map(availableSubmissions, (s) => {
+      let takeOrder = () => {
+        createOrder({
+          studentWechatId: s.wechatId,
+          driverWechatId: driverId,
+        })
+      }
       return (
         <div key={s.wechatId}>
+          <TakeOrderButton takeOrder={takeOrder}/>
           <StudentSubmission studentSubmission={s}/>
         </div>
       )
@@ -60,8 +74,9 @@ class DriverHomePage extends Component {
       <div>
         <Jumbotron>
           <h3 className='display-4'>司机Home页</h3>
-          <h3 className='display-5'>你好，{driver.name}</h3>
+          <h3 className='display-5'>您好，{driver.name}</h3>
         </Jumbotron>
+        <h2>可接收订单</h2>
         {this.renderSubmissions()}
       </div>
     )
