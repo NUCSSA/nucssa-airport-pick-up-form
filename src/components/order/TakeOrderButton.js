@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import { Button } from 'react-bootstrap'
+import alertify from 'alertify.js'
 
 
 @observer
@@ -13,9 +14,15 @@ class TakeOrderButton extends Component {
 
   onClick(e) {
     e.preventDefault()
-    this.props.takeOrder()
+    alertify
+      .okBtn('确认')
+      .cancelBtn('取消')
+      .confirm('您确定要接收这笔订单吗？', () => {
+        // user clicked "ok"
+        this.props.takeOrder()
+      })
   }
-
+  
   render() {
     return (
       <div>
