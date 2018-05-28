@@ -29,6 +29,7 @@ class StudentPage extends Component {
   render() {
     return (
       <div>
+        <h2 style={{color: '#FF0000'}}>***因为司机的数量有限，您的订单有可能不被受理***</h2>
         <JsonSchemaForm
           schema={studentFormData.JsonSchema}
           uiSchema={studentFormData.UISchema}
