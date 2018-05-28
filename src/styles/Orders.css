@@ -1,0 +1,13 @@
+.filterBy {
+    display: inline;
+    height: 3em;
+}
+
+.filterBy > div {
+    display: inline-block;
+}
+
+.filterByDate {
+    max-width: 12em;
+    margin: auto;
+}

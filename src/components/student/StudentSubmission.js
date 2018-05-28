@@ -4,6 +4,8 @@ import { observer, PropTypes as MobxPropTypes } from 'mobx-react'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import _ from 'lodash'
 
+import 'src/styles/Student.css'
+
 @observer
 class StudentSubmission extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class StudentSubmission extends Component {
         phone,
       } = s
       return (
-        <ListGroup key={s.wechatId} >
+        <ListGroup key={s.wechatId} bsClass='student-card'>
           <ListGroupItem>姓名: { name }</ListGroupItem>
           <ListGroupItem>就读项目: { degree }</ListGroupItem>
           <ListGroupItem>邮箱: { email }</ListGroupItem>
@@ -50,7 +52,9 @@ class StudentSubmission extends Component {
           <ListGroupItem>主要负责人微信: { wechatId }</ListGroupItem>
           <ListGroupItem>
             人数: { studentSet.length }
-            <ListGroup>
+          </ListGroupItem>
+          <ListGroupItem>
+            <ListGroup bsClass='students'>
               {this.renderStudent()}
             </ListGroup>
           </ListGroupItem>
@@ -75,7 +79,7 @@ StudentSubmission.propTypes = {
     arrivingTime: PropTypes.string.isRequired,
     flightNumber: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
-    luggageNumber: PropTypes.string.isRequired,
+    luggageNumber: PropTypes.number.isRequired,
     remark: PropTypes.string,
   }).isRequired,
 }

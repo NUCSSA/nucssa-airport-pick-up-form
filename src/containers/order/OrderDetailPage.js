@@ -1,13 +1,15 @@
 import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react'
 import React, { Component } from 'react'
-import { Jumbotron } from 'reactstrap'
+import { Jumbotron, Button } from 'reactstrap'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
 
 import { ADMIN_WECHAT_ACCOUNT } from 'src/data/admin'
 
 import DriverSubmission from 'src/components/driver/DriverSubmission'
 import StudentSubmission from 'src/components/student/StudentSubmission'
+import {ROOT} from 'src/data/route'
 
 
 @inject(stores => {
@@ -87,6 +89,11 @@ class OrderDetailPage extends Component {
           <h4 className={'display-5'}>当订单完成后，请联系NUCSSA管理员结束订单</h4>
           <h4 className='display-5'>如需取消订单，请联系NUCSSA管理员取消订单</h4>
           <h4 className='display-5'>管理员微信：{ADMIN_WECHAT_ACCOUNT}</h4>
+          <Link to={ROOT}>
+            <Button color={'primary'}>
+              返回主页面
+            </Button>
+          </Link>
         </Jumbotron>
         {this.renderOrderDetail()}
 

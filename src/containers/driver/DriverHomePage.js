@@ -6,11 +6,23 @@ import _ from 'lodash'
 
 import StudentSubmission from 'src/components/student/StudentSubmission'
 import TakeOrderButton from 'src/components/order/TakeOrderButton'
+import DateSelect from 'src/components/DateSelect'
+import SingleSelectionDropDown from 'src/components/SingleSelectionDropDown'
+import { luggageOptions } from 'src/data/form'
+import 'src/styles/Orders.css'
 
 @inject(stores => {
   let { driverStore, orderStore } = stores
   let { driver, driverId } = driverStore
-  let { getAvailableSubmissions, availableSubmissions, createOrder } = orderStore
+  let {
+    getAvailableSubmissions,
+    availableSubmissions,
+    createOrder,
+    filteredOrders,
+    setFilterByStart,
+    setFilterByEnd,
+    setFilterByLuggageNumber,
+  } = orderStore
 
   return {
     driver,
@@ -18,6 +30,10 @@ import TakeOrderButton from 'src/components/order/TakeOrderButton'
     getAvailableSubmissions,
     availableSubmissions,
     createOrder,
+    filteredOrders,
+    setFilterByStart,
+    setFilterByEnd,
+    setFilterByLuggageNumber,
   }
 })
 @observer
@@ -37,6 +53,10 @@ class DriverHomePage extends Component {
     getAvailableSubmissions: PropTypes.func,
     availableSubmissions: MobxPropTypes.observableArray,
     createOrder: PropTypes.func,
+    filteredOrders: PropTypes.array,
+    setFilterByStart: PropTypes.func,
+    setFilterByEnd: PropTypes.func,
+    setFilterByLuggageNumber: PropTypes.func,
   }
 
   componentWillMount() {
@@ -50,9 +70,9 @@ class DriverHomePage extends Component {
   }
 
   renderSubmissions() {
-    let { availableSubmissions, createOrder, driverId } = this.props
+    let { filteredOrders, createOrder, driverId } = this.props
 
-    return _.map(availableSubmissions, (s) => {
+    return _.map(filteredOrders, (s) => {
       let takeOrder = () => {
         createOrder({
           studentWechatId: s.wechatId,
@@ -69,7 +89,7 @@ class DriverHomePage extends Component {
   }
 
   render() {
-    let { driver } = this.props
+    let { driver, setFilterByStart, setFilterByEnd, setFilterByLuggageNumber } = this.props
     return (
       <div>
         <Jumbotron>
@@ -77,6 +97,18 @@ class DriverHomePage extends Component {
           <h3 className='display-5'>您好，{driver.name}</h3>
         </Jumbotron>
         <h2>可接收订单</h2>
+        <div className='filterBy'>
+          <DateSelect
+            className='filterByDate'
+            onChangeStart={setFilterByStart}
+            onChangeEnd={setFilterByEnd}
+          />
+          <SingleSelectionDropDown
+            className='filterByLuggageNumber'
+            onChange={setFilterByLuggageNumber}
+            options={luggageOptions}
+          />
+        </div>
         {this.renderSubmissions()}
       </div>
     )

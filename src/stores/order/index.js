@@ -1,5 +1,6 @@
-import { observable, action } from 'mobx'
+import { observable, action, computed } from 'mobx'
 import _ from 'lodash'
+import moment from 'moment'
 
 import { getNeedToBeAssignedStudentSubmissions, createOrder } from 'src/api/order'
 import routing from '../routing'
@@ -8,7 +9,11 @@ import { buildParamURI } from 'src/util'
 
 class Order {
   @observable availableSubmissions = []
-  @observable orderDetail = null
+  @observable filterBy = {
+    start: null,
+    end: null,
+    luggageNumber: null,
+  }
   @observable error = null
 
   @action async getAvailableSubmissions() {
@@ -44,6 +49,37 @@ class Order {
       self.error = err.message
       console.log(err)
     }
+  }
+
+  @computed get filteredOrders() {
+    const { start, end, luggageNumber } = self.filterBy
+    const filtered = _.filter(self.availableSubmissions, (o) => {
+      let result = true
+      const arrivingTime = moment(o.arrivingTime)
+      if (!_.isNil(start)) {
+        result = result && (arrivingTime.isAfter(start))
+      }
+      if (!_.isNil(end)) {
+        result = result && (arrivingTime.isBefore(end))
+      }
+      if(!_.isNil(luggageNumber)) {
+        result = result && (o.luggageNumber === luggageNumber)
+      }
+      return result
+    })
+    return filtered
+  }
+
+  @action setFilterByStart(dateTime) {
+    self.filterBy['start'] = dateTime
+  }
+
+  @action setFilterByEnd(dateTime) {
+    self.filterBy['end'] = dateTime
+  }
+
+  @action setFilterByLuggageNumber(number) {
+    self.filterBy['luggageNumber'] = number
   }
 
 }
