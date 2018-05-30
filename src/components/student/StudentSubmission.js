@@ -4,6 +4,7 @@ import { observer, PropTypes as MobxPropTypes } from 'mobx-react'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import _ from 'lodash'
 
+import { convertTimeToLocaleReadableTime } from 'src/util'
 import 'src/styles/Student.css'
 
 @observer
@@ -46,6 +47,9 @@ class StudentSubmission extends Component {
       luggageNumber,
       remark,
     } = this.props.studentSubmission
+
+    const localeArrivingTime = convertTimeToLocaleReadableTime(arrivingTime)
+
     return (
       <div>
         <ListGroup>
@@ -59,7 +63,7 @@ class StudentSubmission extends Component {
             </ListGroup>
           </ListGroupItem>
 
-          <ListGroupItem>到达时间: { arrivingTime }</ListGroupItem>
+          <ListGroupItem>到达时间: { localeArrivingTime }</ListGroupItem>
           <ListGroupItem>航班号: { flightNumber }</ListGroupItem>
           <ListGroupItem>地址: { address }</ListGroupItem>
           <ListGroupItem>行李箱总数: { luggageNumber }</ListGroupItem>

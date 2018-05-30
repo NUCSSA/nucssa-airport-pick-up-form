@@ -93,8 +93,7 @@
       "arrivingTime": {
         "title": "到达时间",
         "type": "string",
-        "description": "例如 2018/08/27 15:44 注：请填写美东时间",
-        "format": "date-time"
+        "description": "格式必须为：YYYY-MM-DD HH:mm， 例如2018-08-27 15:44， 注：请填写美东时间"
       },
       "flightNumber": {
         "title": "航班号",
@@ -129,9 +128,6 @@
       "ui:options": {
         "orderable": false
       }
-    },
-    "arrivingTime": {
-      "ui:widget": "alt-datetime"
     },
     "remark": {
       "ui:widget": "textarea"

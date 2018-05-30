@@ -4,6 +4,17 @@ import { studentFormData } from 'src/data/form'
 import {inject, observer} from 'mobx-react'
 import PropTypes from 'prop-types'
 
+import { parseTimeInUSEastTimezone } from 'src/util'
+
+const validate = function (formData, errors) {
+  try {
+    parseTimeInUSEastTimezone(formData.arrivingTime)
+  } catch (err) {
+    errors.arrivingTime.addError('Invalid Time')
+  }
+  return errors
+}
+
 
 @inject(stores => {
   let { formStore } = stores
@@ -23,6 +34,8 @@ class StudentPage extends Component {
   }
 
   onSubmit({ formData }) {
+    let parsedArrivingTime = formData.arrivingTime
+    formData.arrivingTime = parseTimeInUSEastTimezone(parsedArrivingTime)
     this.props.submitStudentForm(formData)
   }
 
@@ -34,6 +47,7 @@ class StudentPage extends Component {
           schema={studentFormData.JsonSchema}
           uiSchema={studentFormData.UISchema}
           onSubmit={this.onSubmit}
+          validate={validate}
         />
       </div>
     )

@@ -69,6 +69,7 @@
     "mobx-react": "^5.1.2",
     "mobx-react-router": "^4.0.3",
     "moment": "^2.22.1",
+    "moment-timezone": "^0.5.17",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.3.2",
