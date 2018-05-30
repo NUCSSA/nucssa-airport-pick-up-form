@@ -2,34 +2,41 @@ import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react'
 import React, { Component } from 'react'
 import { Jumbotron } from 'reactstrap'
 import PropTypes from 'prop-types'
+import { Tabs, Tab } from 'react-bootstrap'
 import _ from 'lodash'
 
 import StudentSubmission from 'src/components/student/StudentSubmission'
+import CompleteOrderButton from 'src/components/order/CompleteOrderButton'
 
 @inject(stores => {
   let { driverStore, driverOrderStore } = stores
   let { driver, driverId } = driverStore
-  let { getDriverOrders, driverOrders } = driverOrderStore
+  let { getDriverOrders, driverCompleteOrders, driverIncompleteOrders, completeOrder } = driverOrderStore
 
   return {
     driver,
     driverId,
+    completeOrder,
     getDriverOrders,
-    driverOrders,
+    driverCompleteOrders,
+    driverIncompleteOrders,
   }
 })
 @observer
 class DriverOrdersPage extends Component {
   constructor(props) {
     super(props)
-    this.renderSubmissions = this.renderSubmissions.bind(this)
+    this.renderIncompleteSubmissions = this.renderIncompleteSubmissions.bind(this)
+    this.renderCompleteSubmissions = this.renderCompleteSubmissions.bind(this)
   }
 
   static propTypes = {
     driver: MobxPropTypes.observableObject,
     driverId: PropTypes.string,
     getDriverOrders: PropTypes.func,
-    driverOrders: MobxPropTypes.observableArray,
+    driverCompleteOrders: PropTypes.array,
+    driverIncompleteOrders: PropTypes.array,
+    completeOrder: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
@@ -37,12 +44,26 @@ class DriverOrdersPage extends Component {
     getDriverOrders({ driverWechatId: driverId })
   }
 
-  renderSubmissions() {
-    let { driverOrders } = this.props
-
-    return _.map(driverOrders, (o) => {
+  renderCompleteSubmissions() {
+    let { driverCompleteOrders } = this.props
+    return _.map(driverCompleteOrders, (o) => {
       return (
         <div key={o.studentWechatId}>
+          <StudentSubmission studentSubmission={o.student}/>
+        </div>
+      )
+    })
+  }
+
+  renderIncompleteSubmissions() {
+    let { driverIncompleteOrders, completeOrder } = this.props
+
+    return _.map(driverIncompleteOrders, (o) => {
+      return (
+        <div key={o.studentWechatId}>
+          <CompleteOrderButton
+            studentWechatId={o.studentWechatId}
+            completeOrder={completeOrder}/>
           <StudentSubmission studentSubmission={o.student}/>
         </div>
       )
@@ -54,11 +75,18 @@ class DriverOrdersPage extends Component {
     return (
       <div>
         <Jumbotron>
-          <h3 className='display-4'>司机已接收订单页</h3>
+          <h3 className='display-4'>司机订单页</h3>
           <h3 className='display-5'>您好，{driver.name}</h3>
         </Jumbotron>
-        <h2>已接收订单</h2>
-        {this.renderSubmissions()}
+
+        <Tabs defaultActiveKey='incompleted' id='driver-orders'>
+          <Tab eventKey='incompleted' title='已接收订单'>
+            {this.renderIncompleteSubmissions()}
+          </Tab>
+          <Tab eventKey='completed' title='已完成订单'>
+            {this.renderCompleteSubmissions()}
+          </Tab>
+        </Tabs>
       </div>
     )
   }

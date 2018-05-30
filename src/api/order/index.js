@@ -5,6 +5,7 @@ import { buildParamURI } from 'src/util'
 const ORDER_URI = 'api/orders'
 const NEED_TO_BE_ASSIGNED_STUDENT_SUBMISSIONS = ORDER_URI + '/needToBeAssignedStudentSubmissions'
 const CREATE_ORDER = ORDER_URI + '/create'
+const COMPLETE_ORDER = ORDER_URI + '/complete'
 
 const PARAMS_STUDENT_WECHAT_ID = ':studentWechatId'
 const ORDER_DETAIL = ORDER_URI + '/student/' + PARAMS_STUDENT_WECHAT_ID
@@ -37,6 +38,10 @@ export const createOrder = async function({ studentWechatId, driverWechatId }) {
     studentWechatId,
     driverWechatId,
   })
+}
+
+export const completeOrder = async function({ studentWechatId }) {
+  return await axios.put(COMPLETE_ORDER, { studentWechatId })
 }
 
 export const getOrder = async function({ studentWechatId }) {

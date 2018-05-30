@@ -5,15 +5,15 @@ export const buildParamURI = function({ originalURI, paramName, substitutedValue
   return _.replace(originalURI, paramName, substitutedValue)
 }
 
-const timeFormat = 'YYYY-MM-DD HH:mm'
-
+export const TIME_FORMAT = 'YYYY-MM-DD HH:mm'
+const REGION = 'America/New_York'
 
 export const convertStandardTimeToUSEast = function(time) {
   if (_.isNil(time)) {
     throw new Error('time cannot be undefined')
   }
 
-  return momentTimezone(time).tz('America/New_York').format(timeFormat)
+  return momentTimezone.tz(time, TIME_FORMAT, REGION).format()
 }
 
 export const parseTimeInUSEastTimezone = function(time) {
@@ -21,7 +21,7 @@ export const parseTimeInUSEastTimezone = function(time) {
     throw new Error('time cannot be undefined')
   }
 
-  let parsedTime = momentTimezone.tz(time, timeFormat, 'America/New_York').format()
+  let parsedTime = momentTimezone.tz(time, TIME_FORMAT, REGION).format()
   if (parsedTime === 'Invalid date') {
     throw new Error(parsedTime)
   }

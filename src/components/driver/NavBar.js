@@ -33,7 +33,7 @@ class DriverNavBar extends Component {
           <Nav navbar>
             <Link to={DRIVER_ORDERS}>
               <Button className={'pull-right'}>
-                已接收订单
+                我的订单
               </Button>
             </Link>
           </Nav>

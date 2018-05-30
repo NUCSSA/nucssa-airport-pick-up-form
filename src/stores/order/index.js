@@ -1,8 +1,12 @@
 import { observable, action, computed } from 'mobx'
 import _ from 'lodash'
 import moment from 'moment'
+import {TIME_FORMAT} from 'src/util'
 
-import { getNeedToBeAssignedStudentSubmissions, createOrder } from 'src/api/order'
+import {
+  getNeedToBeAssignedStudentSubmissions,
+  createOrder,
+} from 'src/api/order'
 import routing from '../routing'
 import { PARAMS_STUDENT_WECHAT_ID, ORDER_DETAIL } from 'src/data/route'
 import { buildParamURI } from 'src/util'
@@ -55,7 +59,7 @@ class Order {
     const { start, end, luggageNumber } = self.filterBy
     const filtered = _.filter(self.availableSubmissions, (o) => {
       let result = true
-      const arrivingTime = moment(o.arrivingTime)
+      const arrivingTime = moment(o.arrivingTime, TIME_FORMAT)
       if (!_.isNil(start)) {
         result = result && (arrivingTime.isAfter(start))
       }
