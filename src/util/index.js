@@ -1,18 +1,21 @@
 import _ from 'lodash'
-import moment from 'moment'
 import momentTimezone from 'moment-timezone'
 
 export const buildParamURI = function({ originalURI, paramName, substitutedValue  }) {
   return _.replace(originalURI, paramName, substitutedValue)
 }
 
-export const convertTimeToLocaleReadableTime = function(time) {
+const timeFormat = 'YYYY-MM-DD HH:mm'
+
+
+export const convertStandardTimeToUSEast = function(time) {
   if (_.isNil(time)) {
     throw new Error('time cannot be undefined')
   }
 
-  return moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')
+  return momentTimezone(time).tz('America/New_York').format(timeFormat)
 }
+
 
 export const parseTimeInUSEastTimezone = function(time) {
   if (_.isNil(time)) {
