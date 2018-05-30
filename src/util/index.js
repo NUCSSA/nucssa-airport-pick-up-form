@@ -16,13 +16,12 @@ export const convertStandardTimeToUSEast = function(time) {
   return momentTimezone(time).tz('America/New_York').format(timeFormat)
 }
 
-
 export const parseTimeInUSEastTimezone = function(time) {
   if (_.isNil(time)) {
     throw new Error('time cannot be undefined')
   }
 
-  let parsedTime = momentTimezone(time, 'YYYY-MM-DD HH:mm').tz('America/New_York').format()
+  let parsedTime = momentTimezone.tz(time, timeFormat, 'America/New_York').format()
   if (parsedTime === 'Invalid date') {
     throw new Error(parsedTime)
   }
