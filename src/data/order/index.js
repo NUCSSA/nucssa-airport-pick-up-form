@@ -1,0 +1,5 @@
+export const ORDER_STATUS = {
+  BEFORE: 'BEFORE',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE',
+}

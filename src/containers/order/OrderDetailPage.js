@@ -10,7 +10,7 @@ import { ADMIN_WECHAT_ACCOUNT } from 'src/data/admin'
 import DriverSubmission from 'src/components/driver/DriverSubmission'
 import StudentSubmission from 'src/components/student/StudentSubmission'
 import {ROOT} from 'src/data/route'
-
+import { ORDER_STATUS } from 'src/data/order/index'
 
 @inject(stores => {
   let { driverStore, orderDetailStore } = stores
@@ -71,6 +71,8 @@ class OrderDetailPage extends Component {
 
     return (
       <div>
+        <h3>订单状态</h3>
+        {orderDetail.status === ORDER_STATUS.DONE ? <p>已完成</p> : <p>正在进行</p>}
         <h3>司机信息</h3>
         <DriverSubmission driverSubmission={driver}/>
         <h3>学生信息</h3>

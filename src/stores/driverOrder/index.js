@@ -2,12 +2,7 @@ import { observable, action, computed } from 'mobx'
 import _ from 'lodash'
 
 import { getDriverOrder, completeOrder } from 'src/api/order'
-
-const ORDER_STATUS = {
-  BEFORE: 'BEFORE',
-  IN_PROGRESS: 'IN_PROGRESS',
-  DONE: 'DONE',
-}
+import { ORDER_STATUS } from 'src/data/order/index'
 
 class Order {
   @observable driverOrders = []
