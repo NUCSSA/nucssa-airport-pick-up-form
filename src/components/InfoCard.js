@@ -13,7 +13,7 @@ class InfoCard extends Component {
       <div>
         <Jumbotron>
           <h2 className='display-4'>NUCSSA接机活动报名入口</h2>
-          <p className='lead'>接机活动将从每年6月持续进行到8月底</p>
+          <p className='lead'>接机活动将从每年8月初持续进行到9月初</p>
         </Jumbotron>
       </div>
     )
