@@ -24,26 +24,33 @@ const handleErrorResponse = function (e) {
 
 class Form {
   @observable formData = initFormData
+  @observable error = null
 
   @action reset() {
+    self.error = null
     self.schema = initFormData
   }
 
   @action async submitDriverForm(form) {
+    self.error = null
     try {
       const res = await postDriverForm(form)
       redirectToSuccessPage(res)
     } catch (e) {
       handleErrorResponse(e)
+      self.error = e.response.data[0].message
     }
   }
 
   @action async submitStudentForm(form) {
+    self.error = null
+
     try {
       const res = await postStudentForm(form)
       redirectToSuccessPage(res)
     } catch (e) {
       handleErrorResponse(e)
+      self.error = e.response.data[0].message
     }
   }
 

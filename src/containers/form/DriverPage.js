@@ -7,8 +7,10 @@ import { driverFormData } from 'src/data/form'
 
 @inject(stores => {
   let { formStore } = stores
+  const { submitDriverForm, error } = formStore
   return {
-    submitDriverForm: formStore.submitDriverForm,
+    submitDriverForm,
+    error,
   }
 })
 @observer
@@ -20,6 +22,7 @@ class DriverPage extends Component {
 
   static propTypes = {
     submitDriverForm: PropTypes.func,
+    error: PropTypes.string,
   }
 
   onSubmit({ formData }) {
@@ -27,8 +30,10 @@ class DriverPage extends Component {
   }
 
   render() {
+    const { error } = this.props
     return (
       <div>
+        { error !== null && <h1 style={{color: '#FF0000'}}>{error}</h1> }
         <JsonSchemaForm
           schema={driverFormData.JsonSchema}
           uiSchema={driverFormData.UISchema}

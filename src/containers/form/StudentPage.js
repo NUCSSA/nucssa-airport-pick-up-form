@@ -18,8 +18,10 @@ const validate = function (formData, errors) {
 
 @inject(stores => {
   let { formStore } = stores
+  const { submitStudentForm, error } = formStore
   return {
-    submitStudentForm: formStore.submitStudentForm,
+    submitStudentForm,
+    error,
   }
 })
 @observer
@@ -40,9 +42,12 @@ class StudentPage extends Component {
   }
 
   render() {
+    const { error } = this.props
+
     return (
       <div>
         <h2 style={{color: '#FF0000'}}>***因为司机的数量有限，您的订单有可能不被受理***</h2>
+        { error !== null && <h1 style={{color: '#FF0000'}}>{error}</h1> }
         <JsonSchemaForm
           schema={studentFormData.JsonSchema}
           uiSchema={studentFormData.UISchema}
