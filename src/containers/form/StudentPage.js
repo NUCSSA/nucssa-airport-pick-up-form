@@ -5,6 +5,7 @@ import {inject, observer} from 'mobx-react'
 import PropTypes from 'prop-types'
 
 import { parseTimeInUSEastTimezone } from 'src/util'
+import {ADMIN_WECHAT_ACCOUNT} from 'src/data/admin'
 
 const validate = function (formData, errors) {
   try {
@@ -48,6 +49,7 @@ class StudentPage extends Component {
       <div>
         <h2 style={{color: '#FF0000'}}>***因为司机的数量有限，您的订单有可能不被受理***</h2>
         { error !== null && <h1 style={{color: '#FF0000'}}>{error}</h1> }
+        <h4>如报名遇到问题，请联系NUCSSA管理员，管理员微信：{ADMIN_WECHAT_ACCOUNT}，或发邮件至 nucssait@gmail.com</h4>
         <JsonSchemaForm
           schema={studentFormData.JsonSchema}
           uiSchema={studentFormData.UISchema}

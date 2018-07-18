@@ -45,11 +45,11 @@ class HomePage extends Component {
       <div>
         <HomeNavBar/>
         <InfoCard/>
-        {/*<FormCard*/}
-          {/*title={'学生入口'}*/}
-          {/*description={'接机活动仅限NEU新生'}*/}
-          {/*link={FORM_STUDENT}*/}
-        {/*/>*/}
+        <FormCard
+          title={'学生入口'}
+          description={'接机活动仅限NEU新生'}
+          link={FORM_STUDENT}
+        />
         <br/>
         <FormCard
           title={'司机入口'}
